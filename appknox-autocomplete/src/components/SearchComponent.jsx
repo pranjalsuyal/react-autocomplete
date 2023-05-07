@@ -152,6 +152,7 @@ const SearchComponent = ({ handleResult, handleNoResult }) => {
         setAutoCompleteResult([]);
         setDebouncedSearch('');
         handleResult([]);
+        handleNoResult(false);
     }
     
     return (

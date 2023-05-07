@@ -75,6 +75,15 @@ h1 {
   justify-content: space-between;
 }
 
+.noResultsBlock {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #fff;
+  border-radius: 16px;
+  transition: 0.4s;
+}
+
 @media only screen and (max-width: 680px) {
   .resultsBlock {
     display: flex;
@@ -84,6 +93,9 @@ h1 {
 }
 
 .resultsBlock:hover {
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+.noResultsBlock:hover {
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 }
 

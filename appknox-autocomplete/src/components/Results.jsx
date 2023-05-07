@@ -4,9 +4,9 @@ const Results = ({results, noresult}) => {
     return (
         <div className='resultsContainer'>
             { (results.length === 0 && noresult) ?
-                <div className='resultsBlock'>
-                    <h3>Sorry No Results Found!</h3>
-                    <p>Please try again with different querry</p>
+                <div className='noResultsBlock'>
+                    <h3 className='articleHeader'>Sorry No Results Found!</h3>
+                    <p className='articleDescription'>Please try again with different querry</p>
                 </div>
             : 
             results.map((result) => {
