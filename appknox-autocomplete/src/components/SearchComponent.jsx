@@ -34,11 +34,13 @@ const SearchComponent = ({ handleResult, handleNoResult }) => {
         const autoCompleteResponse = await axios.get(URL).catch((err) => {
             console.log(err, 'err');
         });
-        setPastSearches([search, ...pastSearches.slice(0, 4)]);
-        localStorage.setItem(
-            "pastSearches",
-            JSON.stringify([search, ...pastSearches.slice(0, 4)])
-        );
+        if(pastSearches[0] !== search) {
+            setPastSearches([search, ...pastSearches.slice(0, 4)]);
+            localStorage.setItem(
+                "pastSearches",
+                JSON.stringify([search, ...pastSearches.slice(0, 4)])
+            );
+        }
         setAutoCompleteResult(autoCompleteResponse.data.query.allpages);
         setLoading(false);
     };
@@ -61,12 +63,14 @@ const SearchComponent = ({ handleResult, handleNoResult }) => {
         event && event.preventDefault();
         if( search.trim().length < 1 && !val) {
             return;
-        } 
-        setPastSearches([val || search, ...pastSearches.slice(0, 4)]);
-        localStorage.setItem(
-            "pastSearches",
-            JSON.stringify([val || search, ...pastSearches.slice(0, 4)])
-        );
+        }
+        if(pastSearches[0] !== (search || val)) {
+            setPastSearches([val || search, ...pastSearches.slice(0, 4)]);
+            localStorage.setItem(
+                "pastSearches",
+                JSON.stringify([val || search, ...pastSearches.slice(0, 4)])
+            );
+        }
         const response = await axios.get(
             `https://en.wikipedia.org/w/api.php?format=json&action=query&generator=allpages&gapprefix=${val || search}&gaplimit=20&prop=description&origin=*`
         );
